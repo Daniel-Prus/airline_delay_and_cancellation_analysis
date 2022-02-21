@@ -5,7 +5,6 @@ from datetime import datetime
 import pandas as pd
 import random
 
-
 url = "yuanyuwendymu/airline-delay-and-cancellation-data-2009-2018"
 
 # download kaggle data: airline-delay-and-cancellation, 2018.csv
@@ -32,7 +31,6 @@ file_size_unzipped = os.path.getsize("./rawdata_2018.csv") / (1024 * 1024)
 print(f"Zipped file size: {round(file_size_zipped)} MB")
 print(f"Unzipped file size: {round(file_size_unzipped)} MB")
 
-
 # get random csv sample for map reduce tests
 
 p = 0.001  # % of data
@@ -45,8 +43,16 @@ columns = df.columns.to_list()
 print(columns)
 
 for col in columns:
-    with open("columns_2018.txt", "a", ) as file:
+    with open("headers_2018.txt", "a", ) as file:
         if col == columns[-1]:
             file.write(str(col.lower())[0:-4])
         else:
             file.write(str(col.lower()) + ', ')
+
+# delete headers
+file = open("rawdata_2018.csv", "r")
+lines = file.readlines()
+
+file = open("rawdata_2018_no_headers.csv", "w")
+file.writelines(lines[1:])
+file.close()
