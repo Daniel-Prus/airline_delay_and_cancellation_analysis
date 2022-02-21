@@ -18,8 +18,6 @@ end = datetime.now()
 
 print(f"Data download execution time: {end - start}")
 
-file_size_zipped = os.path.getsize("./2018.csv.zip") / (1024 * 1024)
-
 # unzip file
 zf = ZipFile('2018.csv.zip')
 zf.extractall()
@@ -27,6 +25,7 @@ zf.close()
 os.rename('2018.csv', 'rawdata_2018.csv')
 
 # files size
+file_size_zipped = os.path.getsize("./2018.csv.zip") / (1024 * 1024)
 file_size_unzipped = os.path.getsize("./rawdata_2018.csv") / (1024 * 1024)
 print(f"Zipped file size: {round(file_size_zipped)} MB")
 print(f"Unzipped file size: {round(file_size_unzipped)} MB")

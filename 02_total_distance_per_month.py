@@ -1,8 +1,6 @@
 from mrjob.job import MRJob
 
 
-# the data contains bad lines which make mapreduce not work
-
 class MRTotalDistance(MRJob):
 
     def mapper(self, _, line):
