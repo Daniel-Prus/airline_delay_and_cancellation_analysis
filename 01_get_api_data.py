@@ -49,10 +49,10 @@ for col in columns:
         else:
             file.write(str(col.lower()) + ', ')
 
-# delete headers
+# delete headers in rawdata.csv
 file = open("rawdata_2018.csv", "r")
 lines = file.readlines()
 
-file = open("rawdata_2018_no_headers.csv", "w")
+file = open("rawdata_2018.csv", "w")
 file.writelines(lines[1:])
 file.close()
