@@ -1,5 +1,6 @@
 from mrjob.job import MRJob
 
+
 # the data contains bad lines which make mapreduce not work
 
 class MRTotalDistance(MRJob):
@@ -19,7 +20,7 @@ class MRTotalDistance(MRJob):
         yield f'{month:02d}', (float(distance))
 
     def reducer(self, key, values):
-        yield int(key), sum(values)
+        yield int(key), int(sum(values))
 
 
 if __name__ == "__main__":
