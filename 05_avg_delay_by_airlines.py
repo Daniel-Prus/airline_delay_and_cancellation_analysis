@@ -2,7 +2,7 @@ from mrjob.job import MRJob
 from mrjob.step import MRStep
 
 
-class MRAirlineDistance(MRJob):
+class MRAirlinesDelay(MRJob):
 
     def steps(self):
         return [
@@ -17,10 +17,18 @@ class MRAirlineDistance(MRJob):
          crs_elapsed_time, actual_elapsed_time, air_time, distance, carrier_delay, weather_delay, nas_delay,
          security_delay, late_aircraft_delay, unnamed) = line.split(",")
 
-        yield op_carrier, float(distance)
+        if dep_delay == '':
+            dep_delay = 0
+        if arr_delay == '':
+            arr_delay = 0
+
+        dep_delay = float(dep_delay)
+        arr_delay = float(arr_delay)
+
+        yield op_carrier, (dep_delay, arr_delay)
 
     def configure_args(self):
-        super(MRAirlineDistance, self).configure_args()
+        super(MRAirlinesDelay, self).configure_args()
         self.add_file_arg('--airlines', help='Path to the airlines.csv')
 
     def reducer_init(self):
@@ -31,9 +39,18 @@ class MRAirlineDistance(MRJob):
                 name = name[0:-2]
                 self.airline_names[code] = name
 
-    def reducer(self, airline, distances):
-        yield (airline, self.airline_names[airline]), int(sum(distances))
+    def reducer(self, key, values):
+        dep_delay_sum = 0
+        arr_delay_sum = 0
+        counter = 0
+
+        for value in values:
+            dep_delay_sum += value[0]
+            arr_delay_sum += value[1]
+            counter += 1
+
+        yield (key, self.airline_names[key]), (dep_delay_sum / counter, arr_delay_sum / counter)
 
 
-if __name__ == "__main__":
-    MRAirlineDistance.run()
+if __name__ == '__main__':
+    MRAirlinesDelay.run()
