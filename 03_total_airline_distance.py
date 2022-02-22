@@ -1,6 +1,8 @@
 from mrjob.job import MRJob
 from mrjob.step import MRStep
 
+# run with --airlines flag
+# python .\03_total_airline_distance.py .\rawdata_2018.csv --airlines .\airlines.csv
 
 class MRAirlineDistance(MRJob):
 
@@ -32,7 +34,7 @@ class MRAirlineDistance(MRJob):
                 self.airline_names[code] = name
 
     def reducer(self, airline, distances):
-        yield (airline, self.airline_names[airline]), int(sum(distances))
+        yield (self.airline_names[airline]), int(sum(distances))
 
 
 if __name__ == "__main__":

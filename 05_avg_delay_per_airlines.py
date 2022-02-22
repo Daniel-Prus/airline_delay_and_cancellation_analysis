@@ -2,6 +2,9 @@ from mrjob.job import MRJob
 from mrjob.step import MRStep
 
 
+# run with --airlines flag
+# python .\05_avg_delay_per_airlines.py .\rawdata_2018.csv --airlines .\airlines.csv > .\output\05_avg_delay_per_airlines.csv
+
 class MRAirlinesDelay(MRJob):
 
     def steps(self):
