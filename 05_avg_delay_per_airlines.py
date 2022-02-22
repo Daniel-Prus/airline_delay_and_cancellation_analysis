@@ -52,7 +52,7 @@ class MRAirlinesDelay(MRJob):
             arr_delay_sum += value[1]
             counter += 1
 
-        yield (key, self.airline_names[key]), (dep_delay_sum / counter, arr_delay_sum / counter)
+        yield self.airline_names[key], (dep_delay_sum / counter, arr_delay_sum / counter)
 
 
 if __name__ == '__main__':
