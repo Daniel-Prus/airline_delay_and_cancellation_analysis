@@ -38,7 +38,7 @@ class MRCanceledFlights(MRJob):
         for value in values:
             counter += 1
             cancelled_flights_number += value
-        yield (key, self.airline_names[key]), cancelled_flights_number / counter
+        yield self.airline_names[key], cancelled_flights_number / counter
 
 
 if __name__ == '__main__':

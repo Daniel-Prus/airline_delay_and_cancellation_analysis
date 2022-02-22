@@ -57,3 +57,4 @@ class MRAirlinesDelay(MRJob):
 
 if __name__ == '__main__':
     MRAirlinesDelay.run()
+
