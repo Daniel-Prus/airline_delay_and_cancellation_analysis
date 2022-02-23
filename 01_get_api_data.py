@@ -2,8 +2,10 @@ from kaggle.api.kaggle_api_extended import KaggleApi
 import os
 from zipfile import ZipFile
 from datetime import datetime
+import numpy as np
 import pandas as pd
 import random
+np.random.seed(42)
 
 url = "yuanyuwendymu/airline-delay-and-cancellation-data-2009-2018"
 
