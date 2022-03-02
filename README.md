@@ -69,7 +69,7 @@ Script provides:
 - **test_2018.csv** - random sample for tests
 
 
-### 2. Run job scripts in Terminal/PowerShell locally: {#my-anchor-1}
+### 2. Run job scripts in Terminal/PowerShell locally:
 
 Python files - 02 to 07 contain map reduce jobs.
 
@@ -92,7 +92,7 @@ Navigate to folder and type in command line:
 
         python .\07_cancelled_flights_rate_per_airlines.py .\test_2018.csv --airlines .\airlines.csv | out-file -encoding UTF8 -filepath .\output\07_cancelled_flights_rate_per_airlines.csv
 
-### 3. Run jobs in AWS (S3, EMR-Hadoop Core): {#my-anchor-2}
+### 3. Run jobs in AWS (S3, EMR-Hadoop Core):
 Requires AWS Account and installed AWS Command Line Interface (AWS CLI):
 
         pip install awscli
